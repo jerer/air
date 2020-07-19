@@ -1,6 +1,7 @@
 import datetime
 from airflow import DAG
 from airflow.operators.dummy_operator import DummyOperator
+from airflow.operators.bash_operator import BashOperator 
 
 
 default_args = {
@@ -9,4 +10,4 @@ default_args = {
 }
 
 dag = DAG('my_dag', default_args=default_args)
-op = DummyOperator(task_id='dummy', dag=dag)
+op = BashOperator(task_id='dummy', bash_command='echo 1', dag=dag)
