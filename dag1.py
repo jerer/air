@@ -7,6 +7,7 @@ from airflow.operators.bash_operator import BashOperator
 default_args = {
     'qq': '123',
     'start_date': datetime.datetime(2020, 7, 24),
+    'schedule_interval': None
 }
 
 dag = DAG('my_dag', default_args=default_args)
