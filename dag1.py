@@ -10,5 +10,7 @@ default_args = {
 }
 
 dag = DAG('my_dag', default_args=default_args)
-op = BashOperator(task_id='dummy', bash_command='sleep 10', dag=dag)
-op = BashOperator(task_id='dummy100', bash_command='sleep 10', dag=dag)
+op1 = BashOperator(task_id='dummy', bash_command='sleep 10', dag=dag)
+op2 = BashOperator(task_id='dummy100', bash_command='sleep 10', dag=dag)
+
+op1 >> op2
