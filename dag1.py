@@ -16,7 +16,17 @@ dag = DAG(
 , default_args=default_args
 )
 
-op1 = BashOperator(task_id='dummy', bash_command='sleep 35', dag=dag)
-op2 = BashOperator(task_id='dummy100', bash_command='sleep 35', dag=dag)
+op1 = BashOperator(task_id='dummy', bash_command='sleep 35', dag=dag,
+   executor_config={
+        "KubernetesExecutor": {"request_memory": "128Mi",
+                               "limit_memory": "128Mi",}}
+
+)
+op2 = BashOperator(task_id='dummy100', bash_command='sleep 35', dag=dag,
+executor_config={
+        "KubernetesExecutor": {"request_memory": "128Mi",
+                               "limit_memory": "128Mi",}}
+
+)
 
 # op1 >> op2
